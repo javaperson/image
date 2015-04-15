@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.github.javaperson.image">
+    <uses-sdk android:minSdkVersion="15"/>
+    <application android:icon="@drawable/icon" android:label="@string/app_name">
+
+        <receiver
+                android:name=".ImageWidget"
+                android:label="Image">
+
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+
+            <meta-data
+                    android:name="android.appwidget.provider"
+                    android:resource="@xml/image_appwidget_info_4x2"/>
+        </receiver>
+
+        <service
+                android:name=".ImageWidget$UpdateService"
+                android:label="UpdateService">
+
+            <intent-filter>
+                <action android:name="com.github.javaperson.image.UPDATE"/>
+                <action android:name="android.intent.action.TIME_TICK"/>
+            </intent-filter>
+        </service>
+
+        <activity android:name=".ImageWidgetConfiguration">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
+            </intent-filter>
+        </activity>
+    </application>
+
+    <!-- Internet Permissions -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+</manifest>
