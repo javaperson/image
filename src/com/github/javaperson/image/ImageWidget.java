@@ -130,10 +130,12 @@ public class ImageWidget extends AppWidgetProvider {
          */
         @Override
         public int onStartCommand(Intent intent, int flags, int startId) {
-            String action = intent.getAction();
-            Log.v("onStartCommand", action);
-            if (ACTION_UPDATE.equals(action)) {
-                update();
+            if (intent != null) {
+                String action = intent.getAction();
+                Log.v("onStartCommand", action);
+                if (ACTION_UPDATE.equals(action)) {
+                    update();
+                }
             }
             return super.onStartCommand(intent, flags, startId);
         }
